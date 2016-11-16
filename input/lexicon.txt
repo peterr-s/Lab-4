@@ -1,0 +1,12 @@
+[NP] --> man
+[NP] --> woman
+
+[NPS] --> men
+[NPS] --> women
+
+
+[VP] --> walks
+[VP] --> arrives
+
+[VPS] --> walk
+[VPS] --> arrive

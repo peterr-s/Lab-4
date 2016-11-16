@@ -1,0 +1,19 @@
+[S] --> the [NP]
+[S] --> a [NP]
+[S] --> some [NPS]
+[S] --> many [NPS]
+
+[NP] --> man [W]
+[NP] --> woman [W]
+
+[NPS] --> men [WS]
+[NPS] --> women [WS]
+
+[W] --> who [VP]
+[WS] --> who [VPS]
+
+[VP] --> likes [S]
+[VP] --> sees [S]
+
+[VPS] --> like [S]
+[VPS] --> see [S]
