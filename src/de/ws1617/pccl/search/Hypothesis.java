@@ -2,14 +2,11 @@ package de.ws1617.pccl.search;
 
 import java.util.ArrayList;
 
-import de.ws1617.pccl.fsa.Edge;
-
 public class Hypothesis
 {
 	private int state;
 	private int inputIndex;
-	private ArrayList<Edge> edges;//not sure about that but i think somehow it should
-	//show all edges processed till now , nop?!
+	//private ArrayList<Edge> edges; // shouldn't be necessary
 	private ArrayList<Integer> index;
 	
 	

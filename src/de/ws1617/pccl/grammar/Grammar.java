@@ -3,7 +3,6 @@ package de.ws1617.pccl.grammar;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Set;
 
 public class Grammar {
 	
@@ -12,8 +11,9 @@ public class Grammar {
 	// key: NT (LHS), value: Set<List<Symbols>> (RHS)
 	private HashMap<NonTerminal, HashSet<ArrayList<Symbol>>> rules;
 
-	public Grammar() {
-		super(); // this is not meaningful; Grammar inherits directly from Object
+	/*public*/ protected Grammar() // protected so it isn't invoked outside of GrammarUtils
+	{
+		//super(); // this is not meaningful; Grammar inherits directly from Object
 		rules = new HashMap<>();
 		nts = new HashSet<>();
 	}
@@ -63,7 +63,7 @@ public class Grammar {
 		return sb.toString();
 	}
 	
-	public Set<NonTerminal> getNonTerminals() {
+	public HashSet<NonTerminal> getNonTerminals() {
 		return nts;
 	}
 

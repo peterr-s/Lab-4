@@ -18,7 +18,8 @@ public class Lexicon {
 	// key: pre-terminal, value: terminal
 	private HashMap<NonTerminal, HashSet<ArrayList<Terminal>>> lexMap;
 
-	public Lexicon() {
+	/*public*/ protected Lexicon() // protected so that it isn't accidentally invoked outside of GrammarUtils
+	{
 		lexMap = new HashMap<>();
 		terminals = new HashSet<>();
 	}

@@ -2,7 +2,6 @@ package de.ws1617.pccl.search;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Stack;
 
@@ -16,20 +15,25 @@ import de.ws1617.pccl.grammar.Terminal;
 public class Automaton {
 
 	private Stack<Hypothesis> agenda;
-
 	private ArrayList<NonTerminal> nonTerminals;
-
 	private NonTerminal startSymbol;
-
 	private Graph graph;
 
 	public Automaton(Grammar grammar, Lexicon lexicon, NonTerminal startSymbol) {
-		super();
+		//super(); // not meaningful; inherits from Object
 
-		// TODO create the union of the nonterminals from lexicon and grammar
+		// set start symbol
+		this.startSymbol = startSymbol;
+		
+		// make set of nodes
+		nonTerminals = new ArrayList<NonTerminal>();
+		nonTerminals.add(startSymbol); // add first so that it can be defined as final state
+		nonTerminals.addAll(grammar.getNonTerminals());
+		nonTerminals.addAll(lexicon.getNonTerminals()); // already checks if elements are present; no need to worry about that
 
-		// TODO create a graph based on the grammar and lexicon
-		// attention: how many states do you need ?
+		// graph should hold all nonterminals
+		graph = new Graph(nonTerminals.size());
+		graph.setFinalState(0);
 	}
 
 	/**
@@ -38,11 +42,11 @@ public class Automaton {
 	 * @param input
 	 * @return
 	 */
-	public boolean recognize(String input) {
-
-		// TODO implement me !
-
-		return false;
+	public boolean recognize(String input)
+	{
+		
+		
+		return true;
 	}
 
 	/**
@@ -62,8 +66,7 @@ public class Automaton {
 	 * Initializes the agenda and prepares the input by splitting it and making
 	 * terminals from a string..
 	 * 
-	 * @param s
-	 *            the input string to be processed.
+	 * @param s - the input string to be processed.
 	 * @return a list of terminals based on the input s split by whitespaces.
 	 */
 	private ArrayList<Terminal> initialize(String s)
@@ -88,24 +91,29 @@ public class Automaton {
 	 * @param input
 	 * @return
 	 */
-	public boolean isFinalState(Hypothesis h, List<Terminal> input) {
-		// TODO implement me !
-		return false;
+	public boolean isFinalState(Hypothesis h, List<Terminal> input)
+	{
+		// make sure the hypothesis is in a final state and the input has been entirely processed
+		return (graph.isFinalState(h.getState())) && (input.size() == 0);
 	}
 
 	/**
 	 * Adds edges for the rules to the automaton based on the grammar and
 	 * lexicon.
 	 * 
-	 * @param gr
-	 *            a Grammar.
-	 * @param lex
-	 *            a Lexicon.
+	 * @param gr - a Grammar.
+	 * @param lex - a Lexicon.
 	 */
-	public void addRules(Grammar gr, Lexicon lex) {
-
-		// TODO implement me !
-
+	public void addRules(Grammar gr, Lexicon lex)
+	{
+		// for each possible nonterminal
+		for(NonTerminal symbol : nonTerminals)
+		{
+			// find all grammatical rules
+			for(ArrayList<Symbol> parse : gr.getRuleForLHS(symbol));
+				// do stuff
+			
+			// find all lexical rules
+		}
 	}
-
 }

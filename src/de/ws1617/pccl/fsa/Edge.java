@@ -23,8 +23,13 @@ public class Edge {
 		toConsume = t;
 	}
 	
-	public Terminal getConsumed()
+	public Terminal getToConsume()
 	{
 		return toConsume;
+	}
+	
+	public int getGoal()
+	{
+		return goal;
 	}
 }
