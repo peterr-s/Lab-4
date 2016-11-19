@@ -1,10 +1,9 @@
 package de.ws1617.pccl.search;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import java.util.Stack;
 
 import de.ws1617.pccl.fsa.Edge;
@@ -18,7 +17,7 @@ public class Automaton {
 
 	private Stack<Hypothesis> agenda;
 
-	private List<NonTerminal> nonTerminals;
+	private ArrayList<NonTerminal> nonTerminals;
 
 	private NonTerminal startSymbol;
 
@@ -67,10 +66,17 @@ public class Automaton {
 	 *            the input string to be processed.
 	 * @return a list of terminals based on the input s split by whitespaces.
 	 */
-	private ArrayList<Terminal> initialize(String s) {
+	private ArrayList<Terminal> initialize(String s)
+	{
+		// split on all whitespace
+		String[] tokenArray = s.split("\\s+");
+		
+		// convert to ArrayList, make Terminal for each String
+		ArrayList<Terminal> tokens = new ArrayList<Terminal>();
+		for(int i = 0; i < tokenArray.length; i ++)
+			tokens.add(new Terminal(tokenArray[i]));
 
-		// TODO implement me !
-		return null;
+		return tokens;
 	}
 
 	/**

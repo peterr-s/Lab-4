@@ -16,8 +16,9 @@ public class GrammarUtils {
 	 * @param path
 	 * @return
 	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
-	public static Grammar readGrammar(String path) throws IOException {
+	public static Grammar readGrammar(String path) throws IOException, FileNotFoundException {
 
 		Grammar gr = new Grammar();
 
@@ -60,8 +61,9 @@ public class GrammarUtils {
 	 * @param path
 	 * @return
 	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
-	public static Lexicon readLexicon(String path) throws IOException {
+	public static Lexicon readLexicon(String path) throws IOException, FileNotFoundException {
 		Lexicon lex = new Lexicon();
 
 		String line = "";

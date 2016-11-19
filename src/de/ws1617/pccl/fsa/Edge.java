@@ -8,8 +8,8 @@ import de.ws1617.pccl.grammar.Terminal;
  */
 public class Edge {
 	
-	int goal;
-	Terminal toConsume;
+	private int goal;
+	private Terminal toConsume;
 	
 	/**
 	 * Constructor creates the Edge giving it an index
@@ -17,10 +17,14 @@ public class Edge {
 	 * @param g the goal index of Terminal
 	 * @param t the terminal stored in this edge 
 	 */
-	public Edge(int g , Terminal t)
+	public Edge(int g, Terminal t)
 	{
-		goal=g;
-		toConsume=t;
+		goal = g;
+		toConsume = t;
 	}
 	
+	public Terminal getConsumed()
+	{
+		return toConsume;
+	}
 }

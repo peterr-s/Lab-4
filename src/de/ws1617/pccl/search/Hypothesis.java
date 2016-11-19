@@ -8,27 +8,27 @@ public class Hypothesis
 {
 	private int state;
 	private int inputIndex;
-	private ArrayList<Edge>edges;//not sure about that but i think somehow it should
+	private ArrayList<Edge> edges;//not sure about that but i think somehow it should
 	//show all edges processed till now , nop?!
 	private ArrayList<Integer> index;
 	
 	
 	/**
 	 * Constructor 
-	 * @param s the state 
+	 * @param s
 	 * @param i
 	 */
-	public Hypothesis(int s ,int i)
+	public Hypothesis(int s, int i)
 	{
-		state=s;
-		inputIndex=i;
-		index=new ArrayList<>();
+		state = s;
+		inputIndex = i;
+		index = new ArrayList<>();
 		
 	}
 
-	public void setIndex(ArrayList<Integer>in)
+	public void setIndex(ArrayList<Integer> in)
 	{
-		index=in;
+		index = in;
 	}
 	public int getState()
 	{
@@ -39,13 +39,14 @@ public class Hypothesis
 	{
 		return inputIndex;
 	}
+	
 	/**
 	 * clones the hypothesis adding all index we had so far
 	 */
 	public Hypothesis clone()
 	{
-		Hypothesis h = new Hypothesis(state,inputIndex);
-		ArrayList<Integer>array=new ArrayList<>();
+		Hypothesis h = new Hypothesis(state, inputIndex);
+		ArrayList<Integer> array = new ArrayList<>();
 		for(Integer i : index)
 		{
 			array.add(i);

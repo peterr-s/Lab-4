@@ -2,16 +2,15 @@ package de.ws1617.pccl.search;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
 
 import de.ws1617.pccl.fsa.Edge;
 import de.ws1617.pccl.grammar.Terminal;
 
 public class Graph {
 
-	// TODO add instance fields here 
+	private ArrayList<HashSet<Edge>> adj;
+	// for each state indicate whether it is final
+	private boolean[] finalStates;
 	
 	/**
 	 * Initialize the adjacency and final state array.
@@ -20,17 +19,19 @@ public class Graph {
 	 *            the number of vertices in the graph.
 	 */
 	public Graph(int v) {
+		adj = new ArrayList<HashSet<Edge>>();
+		finalStates = new boolean[v];
+	}
+
+	public void addEdge(int from, Edge edge)
+	{
 		// TODO implement me !
 	}
 
-	public void addEdge(int from, Edge edge) {
-		// TODO implement me !
-	}
-
-	public HashSet<Edge> getAdjacent(int from) {
-
-		// TODO implement me !
-		return null;
+	public HashSet<Edge> getAdjacent(int from)
+	{
+		// not sure if this is what he wants
+		return adj.get(from);
 	}
 
 	/**
@@ -40,10 +41,15 @@ public class Graph {
 	 * @param toConsume the next terminal to consume.
 	 * @return a set of edges adjacent to the from state reachable via the terminal toConsume.
 	 */
-	public HashSet<Edge> getAdjacent(int from, Terminal toConsume) {
-	
-		// TODO implement me !
-		return null;
+	public HashSet<Edge> getAdjacent(int from, Terminal toConsume)
+	{
+		HashSet<Edge> adjacentAndConsuming = new HashSet<Edge>();
+		for(Edge candidate : adj.get(from))
+		{
+			if(candidate.getConsumed().equals(toConsume))
+				adjacentAndConsuming.add(candidate);
+		}
+		return adjacentAndConsuming;
 	}
 
 	/**
@@ -51,16 +57,15 @@ public class Graph {
 	 * @param index 
 	 */
 	public void setFinalState(int index) {
-		// TODO implement me !
+		finalStates[index] = true;
 	}
 
 	/**
 	 * Checks whether the state at the given index is a final state.
 	 * @param index
-	 * @return
+	 * @return whether or not the state is final
 	 */
 	public boolean isFinalState(int index) {
-		// TODO implement me !
-		return false;
+		return finalStates[index];
 	}
 }

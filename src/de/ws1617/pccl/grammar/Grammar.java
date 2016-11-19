@@ -13,7 +13,7 @@ public class Grammar {
 	private HashMap<NonTerminal, HashSet<ArrayList<Symbol>>> rules;
 
 	public Grammar() {
-		super();
+		super(); // this is not meaningful; Grammar inherits directly from Object
 		rules = new HashMap<>();
 		nts = new HashSet<>();
 	}
