@@ -233,6 +233,6 @@ public class Automaton {
 		}
 		
 		// DEBUG: graph
-		System.out.println(graph.toString());
+		//System.out.println(graph.toString());
 	}
 }
