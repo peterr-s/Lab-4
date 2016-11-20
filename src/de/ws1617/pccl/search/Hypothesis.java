@@ -2,12 +2,14 @@ package de.ws1617.pccl.search;
 
 import java.util.ArrayList;
 
+import de.ws1617.pccl.grammar.Terminal;
+
 public class Hypothesis
 {
 	private int state;
-	private int inputIndex;
+	//private int inputIndex; not necessary , we're using last token
 	//private ArrayList<Edge> edges; // shouldn't be necessary
-	private ArrayList<Integer> index;
+	private ArrayList<Terminal> terminals;
 	
 	
 	/**
@@ -15,40 +17,35 @@ public class Hypothesis
 	 * @param s
 	 * @param i
 	 */
-	public Hypothesis(int s, int i)
+	public Hypothesis(int s, int i/* for spec compliance */)
 	{
 		state = s;
-		inputIndex = i;
-		index = new ArrayList<>();
+		terminals = new ArrayList<>();
 		
 	}
 
-	public void setIndex(ArrayList<Integer> in)
+	public void setTerminals(ArrayList<Terminal> t)
 	{
-		index = in;
+		terminals = t;
 	}
 	public int getState()
 	{
 		return state;
 	}
 	
-	public int getInputIndex()
-	{
-		return inputIndex;
-	}
 	
 	/**
 	 * clones the hypothesis adding all index we had so far
 	 */
 	public Hypothesis clone()
 	{
-		Hypothesis h = new Hypothesis(state, inputIndex);
-		ArrayList<Integer> array = new ArrayList<>();
-		for(Integer i : index)
+		Hypothesis h = new Hypothesis(state, 0);
+		ArrayList<Terminal> arrayTerminals = new ArrayList<>();
+		for(Terminal t: terminals)
 		{
-			array.add(i);
+			arrayTerminals.add(t.clone());
 		}
-		h.setIndex(array);
+		h.setTerminals(arrayTerminals);
 		return h;
 	}
 	
