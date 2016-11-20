@@ -6,7 +6,7 @@ import java.util.HashSet;
 
 public class Grammar {
 	
-	private HashSet<NonTerminal> nts;
+	private HashSet<NonTerminal> nts; // should just use rules.keySet()
 
 	// key: NT (LHS), value: Set<List<Symbols>> (RHS)
 	private HashMap<NonTerminal, HashSet<ArrayList<Symbol>>> rules;
@@ -64,7 +64,10 @@ public class Grammar {
 	}
 	
 	public HashSet<NonTerminal> getNonTerminals() {
-		return nts;
+		//return nts; // may not be up to date
+		HashSet<NonTerminal> keys = new HashSet<NonTerminal>();
+		keys.addAll(rules.keySet()); // for some reason Set can't be safely cast to HashSet (???)
+		return keys;
 	}
 
 }

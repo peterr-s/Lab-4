@@ -35,8 +35,8 @@ public class Automaton {
 		nonTerminals.add(entryPt);
 		
 		// DEBUG: show start symbol and entry point indices
-		System.out.println("start symbol:\t" + nonTerminals.indexOf(startSymbol));
-		System.out.println("entry point:\t" + nonTerminals.indexOf(entryPt));
+		//System.out.println("start symbol:\t" + nonTerminals.indexOf(startSymbol));
+		//System.out.println("entry point:\t" + nonTerminals.indexOf(entryPt));
 		
 		for(NonTerminal n: grammar.getNonTerminals())
 		{
@@ -68,21 +68,21 @@ public class Automaton {
 	public boolean recognize(String input)
 	{
 		// DEBUG: show input
-		System.out.println("evaluating \"" + input + "\"");
+		//System.out.println("evaluating \"" + input + "\"");
 		
 		// 1 for the graph entry point
 		Hypothesis init = new Hypothesis(1);
 		init.setTerminals(initialize(input));
 		
 		// DEBUG: show starting hypothesis
-		System.out.println("h0: " + init.toString());
+		//System.out.println("h0: " + init.toString());
 		
 		// make agenda
 		agenda.addAll(successors(init));
 		for(Hypothesis h : agenda)
 		{
 			// DEBUG: print hypotheses
-			System.out.println("\th: " + h.toString());
+			//System.out.println("\th: " + h.toString());
 			
 			if(isFinalState(h)) // if there's a final state the sentence must be valid
 				return true;
@@ -112,16 +112,16 @@ public class Automaton {
 		if(!(terminals == null || terminals.size() == 0))
 		{
 			// DEBUG: getTerminals
-			System.out.println("\t\thypothesis has terminals");
+			//System.out.println("\t\thypothesis has terminals");
 			
 			// take last terminal, check if it can be consumed
 			Terminal lTerm = terminals.get(terminals.size() - 1);
 			// DEBUG: lTerm
-			System.out.println("\t\t\tevaluating " + lTerm.toString());
+			//System.out.println("\t\t\tevaluating " + lTerm.toString());
 			for(Edge e : graph.getAdjacent(h.getState(), lTerm))
 			{
 				// DEBUG: getAdjacent
-				System.out.println("\t\t\tthere are adjacent nodes");
+				//System.out.println("\t\t\tthere are adjacent nodes");
 				
 				Hypothesis successor = new Hypothesis(e.getGoal());
 				ArrayList<Terminal> clonedList = new ArrayList<>(); // use a cloned list to keep Hypotheses from interacting
@@ -197,7 +197,7 @@ public class Automaton {
 		for(NonTerminal symbol : nonTerminals)
 		{
 			int symbolIndex = graph.getIndex(symbol);
-			if(symbolIndex > 0)
+			if(symbolIndex >= 0) // >=, not > !
 			{
 				// find all grammatical rules
 				for(ArrayList<Symbol> parse : gr.getRuleForLHS(symbol))
@@ -211,7 +211,7 @@ public class Automaton {
 						
 						// make sure the index is found
 						int index = graph.getIndex(nT);
-						if(index > 0)
+						if(index >= 0) // this mistake? twice?! for shame Peter, you should know better
 							graph.addEdge(index, new Edge(symbolIndex, t)); // rule direction is reversed to parse instead of generate
 					}
 				}
@@ -228,6 +228,8 @@ public class Automaton {
 					}
 				}
 			}
+			// DEBUG: make sure all symbols are found
+			//else System.out.println("error while reading grammar: " + symbol.toString() + " not found in graph");
 		}
 		
 		// DEBUG: graph

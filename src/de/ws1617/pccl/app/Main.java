@@ -21,11 +21,11 @@ public class Main {
 			for(int i = 4; i < args.length; i ++)
 				input += " " + args[i]; // else words aren't separated
 
-			Automaton auto = new Automaton(grammar,lexicon,startSymbol);
-			if(auto.recognize(input)==true)
-				System.out.println("This is sentence is in the language : "+input);
+			Automaton auto = new Automaton(grammar, lexicon, startSymbol);
+			if(auto.recognize(input) == true)
+				System.out.println("\"" + input + "\" is in the language.");
 			else
-				System.out.println("This sentence was not recognized in the language ! " );
+				System.out.println("\"" + input + "\" is not in the language!" );
 
 		} catch (IOException e) {
 			e.printStackTrace();
