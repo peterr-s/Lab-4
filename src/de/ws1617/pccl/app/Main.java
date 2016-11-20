@@ -19,7 +19,7 @@ public class Main {
 			NonTerminal startSymbol = new NonTerminal(args[2]);
 			String input = args[3]; // alone, this would just get the first word
 			for(int i = 4; i < args.length; i ++)
-				input += args[i];
+				input += " " + args[i]; // else words aren't separated
 
 			Automaton auto = new Automaton(grammar,lexicon,startSymbol);
 			if(auto.recognize(input)==true)

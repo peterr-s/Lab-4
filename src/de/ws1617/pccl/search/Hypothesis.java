@@ -24,9 +24,18 @@ public class Hypothesis
 		
 	}
 
+	public Hypothesis(int s)
+	{
+		this(s, 0);
+	}
+
 	public void setTerminals(ArrayList<Terminal> t)
 	{
 		terminals = t;
+	}
+	public ArrayList<Terminal> getTerminals()
+	{
+		return terminals;
 	}
 	public int getState()
 	{
@@ -49,4 +58,13 @@ public class Hypothesis
 		return h;
 	}
 	
+	public String toString()
+	{
+		String sVal = "" + state + ":\t";
+		
+		for(Terminal t : terminals)
+			sVal += t.toString() + " ";
+		
+		return sVal.trim();
+	}
 }

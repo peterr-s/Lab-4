@@ -59,7 +59,7 @@ public class Graph
 	}
 
 	/**
-	 * Returns all edges that point from a certain state to adjacent states and can be reached when consuimg the given {@link Terminal}.
+	 * Returns all edges that point from a certain state to adjacent states and can be reached when consuming the given {@link Terminal}.
 	 * 
 	 * @param from the current state.
 	 * @param toConsume the next terminal to consume.
@@ -91,5 +91,26 @@ public class Graph
 	 */
 	public boolean isFinalState(int index) {
 		return finalStates[index];
+	}
+	
+	int getIndex(NonTerminal query)
+	{
+		return nonterminalMapper.indexOf(query);
+	}
+	
+	public String toString()
+	{
+		String sForm = "";
+		
+		for(int i = 0; i < adj.size(); i ++)
+		{
+			HashSet<Edge> node = adj.get(i);
+			
+			sForm += "" + i + " (" + nonterminalMapper.get(i) + "):\n";
+			for(Edge e : node)
+				sForm += "\t-> " + e.getGoal() + " (" + e.getToConsume().toString() + ")\n";
+		}
+		
+		return sForm;
 	}
 }
