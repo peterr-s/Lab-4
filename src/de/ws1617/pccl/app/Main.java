@@ -6,6 +6,7 @@ import de.ws1617.pccl.grammar.Grammar;
 import de.ws1617.pccl.grammar.GrammarUtils;
 import de.ws1617.pccl.grammar.Lexicon;
 import de.ws1617.pccl.grammar.NonTerminal;
+import de.ws1617.pccl.search.Automaton;
 
 public class Main {
 
@@ -21,7 +22,11 @@ public class Main {
 				input += args[i];
 
 			// TODO create an Automaton object
-
+			Automaton auto = new Automaton(grammar,lexicon,startSymbol);
+			if(auto.recognize(input)==true)
+				System.out.println("This is part of the grammar : "+input);
+			else
+				System.out.println("This sentence was not recognized ! " );
 			// TODO print out whether the given input is in the language
 
 		} catch (IOException e) {
