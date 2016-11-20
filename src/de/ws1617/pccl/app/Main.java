@@ -21,13 +21,11 @@ public class Main {
 			for(int i = 4; i < args.length; i ++)
 				input += args[i];
 
-			// TODO create an Automaton object
 			Automaton auto = new Automaton(grammar,lexicon,startSymbol);
 			if(auto.recognize(input)==true)
-				System.out.println("This is part of the grammar : "+input);
+				System.out.println("This is sentence is in the language : "+input);
 			else
-				System.out.println("This sentence was not recognized ! " );
-			// TODO print out whether the given input is in the language
+				System.out.println("This sentence was not recognized in the language ! " );
 
 		} catch (IOException e) {
 			e.printStackTrace();
