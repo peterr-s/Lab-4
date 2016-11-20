@@ -28,9 +28,20 @@ public class Automaton {
 		// make set of nodes
 		nonTerminals = new ArrayList<NonTerminal>();
 		nonTerminals.add(startSymbol); // add first so that it can be defined as final state
-		nonTerminals.addAll(grammar.getNonTerminals());
-		nonTerminals.addAll(lexicon.getNonTerminals()); // already checks if elements are present; no need to worry about that
-
+		/*nonTerminals.addAll(grammar.getNonTerminals()); //makes duplicate entries 
+		nonTerminals.addAll(lexicon.getNonTerminals());*/ // already checks if elements are present; no need to worry about that
+		for(NonTerminal n: grammar.getNonTerminals())
+		{
+			if(!nonTerminals.contains(n))
+				nonTerminals.add(n);
+		}
+		
+		for(NonTerminal n: lexicon.getNonTerminals())
+		{
+			if(!nonTerminals.contains(n))
+				nonTerminals.add(n);
+		}
+		
 		// graph should hold all nonterminals
 		graph = new Graph(nonTerminals.size());
 		graph.setFinalState(0);
